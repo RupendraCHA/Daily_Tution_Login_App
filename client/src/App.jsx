@@ -15,12 +15,32 @@ import PageNotFound from './components/PageNotFound'
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Root Route</div>
+    element: <Username></Username>
   },
   {
     path: "/register",
-    element: <div>Register Route</div>
-  }
+    element: <Register></Register>
+  },
+  {
+    path: "/password",
+    element: <Password></Password>
+  },
+  {
+    path: "/profile",
+    element: <Profile></Profile>
+  },
+  {
+    path: "/recovery",
+    element: <Recovery></Recovery>
+  },
+  {
+    path: "/reset",
+    element: <Reset></Reset>
+  },
+  {
+    path: "*",
+    element: <PageNotFound></PageNotFound>
+  },
 ])
 
 const App = () => {
