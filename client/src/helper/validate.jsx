@@ -1,9 +1,33 @@
 import toast from 'react-hot-toast'
 
-// Validate Login Page Username
+//Validate Reset Password
 
-export const usernameValidate = (values) => {
+export const resetPasswordValidation = (values) => {
+    const errors = passwordVerify({}, values)
+
+    if (values.password !== values.confirm_pwd) {
+        errors.exist = toast.error("Password not match....!")
+    }
+
+    return errors
+}
+
+
+
+//Validate register form
+
+export const registerValidation = async (values) => {
     const errors = usernameVerify({}, values)
+    emailVerify(errors, values)
+    passwordVerify(errors, values)
+    console.log(errors)
+
+    return errors
+}
+
+// Validate Profile Page
+export const profileValidation = (values) => {
+    const errors = emailVerify({}, values)
 
     return errors
 }
@@ -11,7 +35,7 @@ export const usernameValidate = (values) => {
 
 //Validate Password Page Password
 
-export const passwordValidate = (values)=> {
+export const passwordValidation = (values)=> {
     const errors = passwordVerify({}, values)
 
     return errors
@@ -36,6 +60,14 @@ function passwordVerify(error = {}, values) {
     return error;
 }
 
+// Validate Login Page Username
+
+export const usernameValidate = (values) => {
+    const errors = usernameVerify({}, values)
+
+    return errors
+}
+
 // Validate Username
 
 function usernameVerify(error = {}, values) {
@@ -46,4 +78,18 @@ function usernameVerify(error = {}, values) {
     }
 
     return error;
+}
+
+// Validate email
+
+function emailVerify(error = {}, values) {
+    if (!values.email){
+        error.email = toast.error("Email Required....!")
+    }else if (values.email.includes(" ")) {
+        error.email = toast.error("Wrong Email....!")
+    }else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        error.email = toast.error("Invalid email address....!")
+    }
+
+    return error
 }

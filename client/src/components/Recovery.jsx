@@ -6,7 +6,7 @@ import styles from "../styles/Username.module.css"
 import {Toaster} from 'react-hot-toast'
 import {useFormik} from "formik"
 
-import { passwordValidate } from '../helper/validate'
+import { passwordValidation } from '../helper/validate'
 
 const Recovery = () => {
 
@@ -14,7 +14,7 @@ const Recovery = () => {
         initialValues :{
             password: ''
         },
-        validate: passwordValidate,
+        validate: passwordValidation,
         validateOnBlur: false,
         validateOnChange: false,
         onSubmit: async values => {
@@ -33,13 +33,13 @@ const Recovery = () => {
                         Enter OTP to Recover Password...
                     </span>
                 </div>
-                <form className='py-20' onSubmit={formik.handleSubmit}>
+                <form className='py-20'>
                     <div className='textbox flex flex-col items-center'>
                       <div className='input text-center'>
                         <span className='py-4 text-sm text-gray-500'>Entert 6 digits OTP sent to your email</span>
-                        <input {...formik.getFieldProps('password')} className={styles.textbox} type='password' placeholder='Password'/>
+                        <input className={styles.textbox} type='password' placeholder='OTP'/>
                       </div>
-                        <button className={styles.btn} type='submit'>Sign In</button>
+                      <button className={styles.btn} type='submit'>Sign In</button>
                     </div>
                     <div className='text-center py-4'>
                         <span className='text-gray-500'>Can't get OTP? <button className="text-red-500 text-[14px] hover:underline">Resend</button></span>
